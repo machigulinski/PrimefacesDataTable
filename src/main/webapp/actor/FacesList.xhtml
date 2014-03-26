@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListActorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+	    <h:form>  
+		<p:dataTable editable="true" editMode="cell" var="actor" 
+			     value="#{actorController.items}" paginator="true" rows="10"  
+			     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+			     rowsPerPageTemplate="5,10,15"> 		    
+
+
+		    <p:column sortBy="actorId" headerText="Actor ID">  
+			<h:outputText value="#{actor.actorId}" />  
+		    </p:column>  
+
+
+		    <p:column sortBy="firstName" headerText="Actor First Name" >  
+			<p:cellEditor>  
+			    <f:facet name="output"><h:outputText value="#{actor.firstName}" /></f:facet>  
+			    <f:facet name="input"><p:inputText value="#{actor.firstName}" label="Name" style="width:96%"/></f:facet>  
+			
+			</p:cellEditor>  
+		    </p:column>  
+
+
+
+		    <p:column  sortBy="lastName" headerText="Actor Last Name">  
+			<p:cellEditor>  
+			    <f:facet name="output"><h:outputText value="#{actor.lastName}" /></f:facet>  
+			    <f:facet name="input"><p:inputText value="#{actor.lastName}" label="Name" style="width:96%"/></f:facet>  
+			</p:cellEditor>  
+		    </p:column>  
+		    
+		    <p:column  sortBy="lastUpdate" headerText="Last Update">  
+			<h:outputText value="#{actor.lastUpdate}" />
+		    </p:column>  
+
+		</p:dataTable>  
+	    </h:form>  
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>
